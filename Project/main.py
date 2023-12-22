@@ -43,8 +43,6 @@ async def addBook(book: book_body):
         json.dump(BOOK_DB,f)
     return {"message" : f"The book {book} has been added"}
 
-
-
 @app.put("/get-by-id/{random_id}")
 async def updatebook(random_id: int, book:book_body):
     book_encoded = jsonable_encoder(book)
@@ -52,6 +50,13 @@ async def updatebook(random_id: int, book:book_body):
     with open(BOOKS,'w') as f:
         json.dump(BOOK_DB,f)
     return {"message" : f'The id {random_id} book {book.name} has been updated'}
+
+@app.delete("/get-by-id/{random_id}")
+async def deletion(random_id: int):
+    del BOOK_DB[random_id-1]
+    with open(BOOKS,'w') as f:
+        json.dump(BOOKS,f)
+    return {f'The requested book no. {random_id} has been deleted'}
 
 
 
