@@ -5,7 +5,10 @@ import models, schemas, tools
 
 from sqlalchemy.orm import Session
 
+
+
 models.Base.metadata.create_all(bind=engine)
+
 
 app = FastAPI()
 
