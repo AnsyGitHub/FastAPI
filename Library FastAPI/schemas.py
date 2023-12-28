@@ -1,4 +1,6 @@
+import datetime
 from pydantic import BaseModel
+from typing import Optional
 
 class UserLogin(BaseModel):
     username: str
@@ -9,10 +11,16 @@ class BookCreate(BaseModel):
     author: str
     ISBN: str
 
+class Book(BaseModel):
+    id: int
+    title: str
+    author: str
+    ISBN: str
+    is_borrowed: bool
+
 class MemberCreate(BaseModel):
     name: str
     email: str
-    membership_id: str
 
 class BorrowRecordCreate(BaseModel):
     member_id: int
@@ -21,6 +29,11 @@ class BorrowRecordCreate(BaseModel):
 class BorrowRecordReturn(BaseModel):
     return_date: str  
 
+class BorrowList(BaseModel):
+    member_id: int
+    book_id: int
+
+    
 
 #----------------------------------------------#
     

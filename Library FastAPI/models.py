@@ -9,6 +9,9 @@ class Book(Base):
     title = Column(String, index=True)
     author = Column(String)
     ISBN = Column(String, unique=True, index=True)
+    is_borrowed = Column(Boolean, default=False)
+    user_add = Column(Integer, ForeignKey("users.id"))
+
 
 class Member(Base):
     __tablename__ = "members"
@@ -16,7 +19,7 @@ class Member(Base):
     id = Column(Integer, primary_key=True, index=True)
     name = Column(String)
     email = Column(String, unique=True, index=True)
-    membership_id = Column(String, unique=True, index=True)
+    # borrow = relationship("borrow_records", back_populates="borrow_records")
 
 class BorrowRecord(Base):
     __tablename__ = "borrow_records"
